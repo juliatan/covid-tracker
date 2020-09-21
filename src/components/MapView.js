@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from 'leaflet';
-import axios from 'axios';
+import { fetchCountryData } from '../api/coronaApi';
 import 'leaflet/dist/leaflet.css'; // required to style leaflet map
 
 export const icon = new Icon({
@@ -18,24 +18,14 @@ export default class MapView extends Component {
   };
 
   componentDidMount() {
-    this.fetchData();
+    this.countryData();
   }
 
-  fetchData = async () => {
-    try {
-      const response = await axios.get(
-        'https://corona.lmao.ninja/v3/covid-19/countries',
-      );
-
-      const { data } = response;
-      this.setState({ countryData: data });
-      // eslint-disable-next-line no-console
-      console.log(data);
-    } catch (e) {
-      // need better error handler
-      // eslint-disable-next-line no-console
-      console.log(`Failed to fetch countries: ${e.message}`, e);
-    }
+  countryData = async () => {
+    const response = await fetchCountryData();
+    console.log(response);
+    const results = response.features;
+    this.setState({ countryData: results });
   };
 
   setActiveCountry = (country) => {
@@ -48,8 +38,11 @@ export default class MapView extends Component {
       countryMarkers = this.state.countryData.map((countryObj) => (
         <Marker
           // need to refactor
-          key={`lat${countryObj.countryInfo.lat}long${countryObj.countryInfo.long}updated${countryObj.updated}`}
-          position={[countryObj.countryInfo.lat, countryObj.countryInfo.long]}
+          key={`lat${countryObj.properties.countryInfo.lat}long${countryObj.properties.countryInfo.long}updated${countryObj.properties.updated}`}
+          position={[
+            countryObj.properties.countryInfo.lat,
+            countryObj.properties.countryInfo.long,
+          ]}
           onClick={() => this.setActiveCountry(countryObj)}
           icon={icon}
         />
@@ -68,16 +61,16 @@ export default class MapView extends Component {
         {this.state.activeCountry && (
           <Popup
             position={[
-              this.state.activeCountry.countryInfo.lat,
-              this.state.activeCountry.countryInfo.long,
+              this.state.activeCountry.properties.countryInfo.lat,
+              this.state.activeCountry.properties.countryInfo.long,
             ]}
             onClose={() => {
               this.setActiveCountry(null);
             }}
           >
             <div>
-              <h2>{this.state.activeCountry.country}</h2>
-              <p>Deaths: {this.state.activeCountry.deaths}</p>
+              <h2>{this.state.activeCountry.properties.country}</h2>
+              <p>Deaths: {this.state.activeCountry.properties.deaths}</p>
             </div>
           </Popup>
         )}
