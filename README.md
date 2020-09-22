@@ -9,6 +9,7 @@ WIP COVID-19 country tracker / dashboard. Utilises data from the [Disease.sh API
   - `leaflet`
   - `react-leaflet`
   - `axios`
+  - `node-sass`
   - `eslint`
   - `prettier`
 
@@ -17,6 +18,8 @@ WIP COVID-19 country tracker / dashboard. Utilises data from the [Disease.sh API
 - [WIP]
 - Uses [Leaflet Maps](https://react-leaflet.js.org/) as the mapping library.
 - My deployed version is hosted on Firebase.
+- Fetches COVID-19 API data and spits out response in [GeoJSON format](https://geojson.org/).
+- Map markers rendered with dynamic country information. On-hover tooltip with detailed country information done with CSS/SASS.
 
 ## Getting started
 
