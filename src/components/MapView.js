@@ -7,8 +7,8 @@ import './MapView.scss';
 
 export default class MapView extends Component {
   state = {
-    currentLocation: { lat: 51.5, lng: -0.1 }, // set to London
-    zoom: 3,
+    currentLocation: { lat: 31.5, lng: -0.1 }, // set to London
+    zoom: 2.5,
     countryData: null,
   };
 
@@ -47,6 +47,11 @@ export default class MapView extends Component {
           updatedFormatted = new Date(updated).toGMTString();
         }
 
+        let recoveredFormatted;
+        if (cases > 0 && recovered === 0) {
+          recoveredFormatted = 'N/A';
+        }
+
         const html = `
           <span class="icon-marker">
             <span class="icon-marker-tooltip">
@@ -54,7 +59,9 @@ export default class MapView extends Component {
               <ul>
                 <li><strong>Confirmed:</strong> ${cases.toLocaleString()}</li>
                 <li><strong>Deaths:</strong> ${deaths.toLocaleString()}</li>
-                <li><strong>Recovered:</strong> ${recovered.toLocaleString()}</li>
+                <li><strong>Recovered:</strong> ${
+                  recoveredFormatted || recovered.toLocaleString()
+                }</li>
                 <li><strong>Last Update:</strong> ${updatedFormatted}</li>
               </ul>
             </span>
