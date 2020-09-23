@@ -69,6 +69,11 @@ export default class MapView extends Component {
             </span>
         `;
 
+        const markerColour = `
+          ${cases > 1000000 ? 'icon-high' : 'icon'}
+          ${cases < 100000 ? 'icon-low' : 'icon'}
+        `;
+
         return (
           <Marker
             key={`lat${countryInfo.lat}long${countryInfo.long}updated${updated}`}
@@ -77,7 +82,7 @@ export default class MapView extends Component {
               new DivIcon({
                 // iconUrl: '/marker.svg',
                 // iconSize: [50, 50],
-                className: 'icon',
+                className: markerColour,
                 html,
               })
             }

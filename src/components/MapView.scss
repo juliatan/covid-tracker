@@ -14,7 +14,7 @@
   height: 3.6em;
   font-size: 0.7em;
   font-weight: bold;
-  background-color: $red;
+  background-color: $dark-blue;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(black, 0.9);
 
@@ -22,6 +22,18 @@
     .icon-marker-tooltip {
       display: block;
     }
+  }
+}
+
+.icon-high {
+  .icon-marker {
+    background-color: $red;
+  }
+}
+
+.icon-low {
+  .icon-marker {
+    background-color: $medium-blue;
   }
 }
 
@@ -57,12 +69,12 @@
     margin-top: 0;
   }
 
-  h3 {
-    font-size: 1.2em;
-    margin: 0.1em 0;
-    font-weight: normal;
-    color: $light-blue;
-  }
+  // h3 {
+  //   font-size: 1.2em;
+  //   margin: 0.1em 0;
+  //   font-weight: normal;
+  //   color: $light-blue;
+  // }
 
   ul,
   p {
