@@ -1,0 +1,10 @@
+@import '../../assets/stylesheets/config/colours';
+
+.Logo {
+  svg {
+    width: 25px;
+    height: 25px;
+    fill: $lightest-blue;
+    margin-right: 10px;
+  }
+}

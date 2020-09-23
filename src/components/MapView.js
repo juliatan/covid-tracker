@@ -85,31 +85,33 @@ export default class MapView extends Component {
     }
 
     return (
-      <Map center={this.state.currentLocation} zoom={this.state.zoom}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
+      <div className="map-view">
+        <Map center={this.state.currentLocation} zoom={this.state.zoom}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
 
-        {countryMarkers}
+          {countryMarkers}
 
-        {/* {this.state.activeCountry && (
-          <Popup
-            position={[
-              this.state.activeCountry.properties.countryInfo.lat,
-              this.state.activeCountry.properties.countryInfo.long,
-            ]}
-            onClose={() => {
-              this.setActiveCountry(null);
-            }}
-          >
-            <div>
-              <h2>{this.state.activeCountry.properties.country}</h2>
-              <p>Deaths: {this.state.activeCountry.properties.deaths}</p>
-            </div>
-          </Popup>
-        )} */}
-      </Map>
+          {/* {this.state.activeCountry && (
+            <Popup
+              position={[
+                this.state.activeCountry.properties.countryInfo.lat,
+                this.state.activeCountry.properties.countryInfo.long,
+              ]}
+              onClose={() => {
+                this.setActiveCountry(null);
+              }}
+            >
+              <div>
+                <h2>{this.state.activeCountry.properties.country}</h2>
+                <p>Deaths: {this.state.activeCountry.properties.deaths}</p>
+              </div>
+            </Popup>
+          )} */}
+        </Map>
+      </div>
     );
   }
 }

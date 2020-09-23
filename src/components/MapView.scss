@@ -1,14 +1,20 @@
+@import '../assets/stylesheets/config/colours';
+
+.map-view {
+  min-height: 50vh;
+}
+
 .icon-marker {
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: $lightest-blue;
   width: 3.6em;
   height: 3.6em;
   font-size: 0.7em;
   font-weight: bold;
-  background-color: red;
+  background-color: $red;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(black, 0.9);
 
@@ -26,7 +32,7 @@
   width: 16em;
   font-size: 1.4em;
   padding: 1em;
-  background-color: blue;
+  background-color: $medium-blue;
   border-radius: 0.4em;
   margin-bottom: 1em;
   box-shadow: 0 3px 5px rgba(black, 0.9);
@@ -39,7 +45,7 @@
     content: '';
     width: 1.4em;
     height: 1.4em;
-    background-color: blue;
+    background-color: $medium-blue;
     transform: rotate(45deg);
     margin-left: -0.7em;
   }
@@ -55,7 +61,7 @@
     font-size: 1.2em;
     margin: 0.1em 0;
     font-weight: normal;
-    color: blueviolet;
+    color: $light-blue;
   }
 
   ul,
