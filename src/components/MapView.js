@@ -9,7 +9,6 @@ export default class MapView extends Component {
   state = {
     currentLocation: { lat: 51.5, lng: -0.1 }, // set to London
     zoom: 3,
-    // activeCountry: null,
     countryData: null,
   };
 
@@ -21,10 +20,6 @@ export default class MapView extends Component {
     const geoJson = await fetchCountryData();
     this.setState({ countryData: geoJson.features });
   };
-
-  // setActiveCountry = (country) => {
-  //   this.setState({ activeCountry: country });
-  // };
 
   render() {
     let countryMarkers = null;
@@ -42,12 +37,14 @@ export default class MapView extends Component {
         let casesFormatted = `${cases}`;
         let updatedFormatted;
 
-        if (cases > 1000) {
+        if (cases >= 1000000) {
+          casesFormatted = `${casesFormatted.slice(0, -6)}M+`;
+        } else if (cases > 1000 && cases < 1000000) {
           casesFormatted = `${casesFormatted.slice(0, -3)}k+`;
         }
 
         if (updated) {
-          updatedFormatted = new Date(updated).toLocaleString();
+          updatedFormatted = new Date(updated).toGMTString();
         }
 
         const html = `
@@ -55,9 +52,9 @@ export default class MapView extends Component {
             <span class="icon-marker-tooltip">
               <h2>${country}</h2>
               <ul>
-                <li><strong>Confirmed:</strong> ${cases}</li>
-                <li><strong>Deaths:</strong> ${deaths}</li>
-                <li><strong>Recovered:</strong> ${recovered}</li>
+                <li><strong>Confirmed:</strong> ${cases.toLocaleString()}</li>
+                <li><strong>Deaths:</strong> ${deaths.toLocaleString()}</li>
+                <li><strong>Recovered:</strong> ${recovered.toLocaleString()}</li>
                 <li><strong>Last Update:</strong> ${updatedFormatted}</li>
               </ul>
             </span>
@@ -69,7 +66,6 @@ export default class MapView extends Component {
           <Marker
             key={`lat${countryInfo.lat}long${countryInfo.long}updated${updated}`}
             position={[countryInfo.lat, countryInfo.long]}
-            // onClick={() => this.setActiveCountry(countryObj)}
             icon={
               new DivIcon({
                 // iconUrl: '/marker.svg',
@@ -91,25 +87,7 @@ export default class MapView extends Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-
           {countryMarkers}
-
-          {/* {this.state.activeCountry && (
-            <Popup
-              position={[
-                this.state.activeCountry.properties.countryInfo.lat,
-                this.state.activeCountry.properties.countryInfo.long,
-              ]}
-              onClose={() => {
-                this.setActiveCountry(null);
-              }}
-            >
-              <div>
-                <h2>{this.state.activeCountry.properties.country}</h2>
-                <p>Deaths: {this.state.activeCountry.properties.deaths}</p>
-              </div>
-            </Popup>
-          )} */}
         </Map>
       </div>
     );
