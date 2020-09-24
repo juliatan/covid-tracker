@@ -30,10 +30,26 @@ export const fetchCountryData = async () => {
     const { data } = response;
 
     return createGeoJson(data);
-    // return { results: data };
   } catch (e) {
     // need better error handler
     // eslint-disable-next-line no-console
     console.log(`Failed to fetch countries: ${e.message}`, e);
+  }
+};
+
+// eslint-disable-next-line consistent-return
+export const fetchGlobalData = async () => {
+  try {
+    const response = await axios.get(
+      'https://corona.lmao.ninja/v3/covid-19/all',
+    );
+
+    const { data } = response;
+
+    return { results: data };
+  } catch (e) {
+    // need better error handler
+    // eslint-disable-next-line no-console
+    console.log(`Failed to fetch global stats: ${e.message}`, e);
   }
 };
