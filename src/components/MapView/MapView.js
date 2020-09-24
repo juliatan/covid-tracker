@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { DivIcon } from 'leaflet';
-import { fetchCountryData } from '../api/coronaApi';
+import { fetchCountryData } from '../../api/coronaApi';
 import 'leaflet/dist/leaflet.css'; // required to style leaflet map
 import './MapView.scss';
 
 export default class MapView extends Component {
   state = {
     currentLocation: { lat: 31.5, lng: -0.1 }, // set to London
-    zoom: 2.5,
+    zoom: 2,
     countryData: null,
   };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MapView from './components/MapView';
+import MapView from './components/MapView/MapView';
 import Layout from './hoc/Layout/Layout';
 import './App.css';
 

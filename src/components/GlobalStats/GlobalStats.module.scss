@@ -1,0 +1,32 @@
+@import '../../assets/stylesheets/config/colours';
+@import '../../assets/stylesheets/config/layout';
+
+.GlobalStats {
+  height: $global-stats-height;
+  background-color: $medium-blue;
+  color: $lightest-blue;
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 20px auto;
+    }
+  }
+
+  .lastUpdated {
+    background-color: #3a89c9;
+    color: #e9f2f9;
+
+    p {
+      margin: 0;
+      text-align: center;
+      // padding: 0 0 20px 0;
+      font-size: 0.8rem;
+    }
+  }
+}

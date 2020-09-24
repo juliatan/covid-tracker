@@ -1,5 +1,6 @@
 /* to reset default CSS */
 @import-sanitize;
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
   margin: 0;
@@ -7,6 +8,7 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
 }
 
 code {

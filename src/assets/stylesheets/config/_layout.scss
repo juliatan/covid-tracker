@@ -1,0 +1,4 @@
+$navbar-height: 50px;
+$global-stats-height: 230px;
+// $map-height: 400px;
+$map-height: calc(100vh - #{$navbar-height} - #{$global-stats-height});
